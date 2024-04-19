@@ -10,8 +10,12 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.Info
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
@@ -31,12 +35,13 @@ import coil.compose.AsyncImage
 
 @Composable
 fun ArticleScreen(
+    onAboutButtonClick: () -> Unit,
     articlesViewModel: ArticlesViewModel
 ) {
     val articles = articlesViewModel.articleState.collectAsState()
 
     Column{
-        AppBar()
+        AppBar(onAboutButtonClick)
         when {
             articles.value.loading -> {
                 Loader()
@@ -56,10 +61,18 @@ fun ArticleScreen(
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun AppBar(
-
+    onAboutButtonClick: () -> Unit,
 ){
     TopAppBar(
-        title = { Text(text = "Articles")}
+        title = { Text(text = "Articles")},
+        actions = {
+            IconButton(onClick = onAboutButtonClick) {
+                Icon(
+                    imageVector = Icons.Outlined.Info,
+                    contentDescription = "Botão de Informações do dispositivo"
+                )
+            }
+        }
     )
 }
 
@@ -67,25 +80,24 @@ private fun AppBar(
 fun ArticlesListView(articles: List<Article>) {
     LazyColumn(modifier = Modifier.fillMaxSize()) {
         items(articles) { article->
-            ArticlesItemView(article = article)
+            ArticleItemView(article = article)
         }
     }
 }
 
+
 @Composable
-fun ArticlesItemView(
-    article: Article
-){
+fun ArticleItemView(article: Article) {
+
     Column(
         modifier = Modifier
             .fillMaxWidth()
             .padding(16.dp)
-    ){
+    ) {
         AsyncImage(
             model = article.imageUrl,
             contentDescription = null
         )
-
         Spacer(modifier = Modifier.height(4.dp))
         Text(
             text = article.title,
@@ -102,6 +114,7 @@ fun ArticlesItemView(
         Spacer(modifier = Modifier.height(4.dp))
     }
 }
+
 
 @Composable
 fun Loader(){
