@@ -12,12 +12,9 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import br.com.julianovince.diariodenoticias.android.screens.ArticleScreen
 import br.com.julianovince.diariodenoticias.android.screens.Screens
-import br.com.julianovince.diariodenoticias.articles.ArticlesViewModel
 
 @Composable
-fun AppScaffold(
-    articlesViewModel:ArticlesViewModel
-) {
+fun AppScaffold() {
     val navController = rememberNavController()
 
     Scaffold {
@@ -26,7 +23,6 @@ fun AppScaffold(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(it),
-            articlesViewModel
         )
     }
 }
@@ -34,9 +30,7 @@ fun AppScaffold(
 @Composable
 fun AppNavHost(
     navController: NavHostController,
-    modifier: Modifier = Modifier,
-    articlesViewModel: ArticlesViewModel
-) {
+    modifier: Modifier = Modifier) {
     NavHost(
         navController = navController,
         startDestination = Screens.ARTICLES.route,
@@ -45,7 +39,6 @@ fun AppNavHost(
         composable(Screens.ARTICLES.route){
             ArticleScreen(
                 onAboutButtonClick = { navController.navigate(Screens.ABOUT_DEVICE.route)},
-                articlesViewModel
             )
         }
         composable(Screens.ABOUT_DEVICE.route) {

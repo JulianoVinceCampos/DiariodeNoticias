@@ -8,7 +8,7 @@ import kotlinx.datetime.toLocalDateTime
 import kotlinx.datetime.todayIn
 import kotlin.math.abs
 
-class ArticleUseCase(
+class ArticlesUseCase(
     private val service:ArticlesService
 ) {
 
