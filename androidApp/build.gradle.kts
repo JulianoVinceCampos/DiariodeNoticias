@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.kotlinAndroid)
 }
 
+
 android {
     namespace = "br.com.julianovince.diariodenoticias.android"
     compileSdk = 34
@@ -48,6 +49,6 @@ dependencies {
     implementation(libs.androidx.navigation.compose)
     implementation(libs.koin.android)
     implementation(libs.koin.androidx.compose)
-
+    implementation (libs.accompanist.swiperefresh)
     debugImplementation(libs.compose.ui.tooling)
 }
