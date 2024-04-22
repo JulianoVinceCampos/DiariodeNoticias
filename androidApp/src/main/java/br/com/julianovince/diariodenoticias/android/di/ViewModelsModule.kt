@@ -1,6 +1,6 @@
 package br.com.julianovince.diariodenoticias.android.di
 
-import br.com.julianovince.diariodenoticias.articles.ArticlesViewModel
+import br.com.julianovince.diariodenoticias.articles.presentation.ArticlesViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
