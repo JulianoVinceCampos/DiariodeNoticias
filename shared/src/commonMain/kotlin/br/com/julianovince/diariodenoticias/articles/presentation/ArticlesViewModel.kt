@@ -1,6 +1,8 @@
-package br.com.julianovince.diariodenoticias.articles
+package br.com.julianovince.diariodenoticias.articles.presentation
 
 import br.com.julianovince.diariodenoticias.BaseViewModel
+import br.com.julianovince.diariodenoticias.articles.application.ArticlesUseCase
+import br.com.julianovince.diariodenoticias.articles.presentation.ArticlesState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
@@ -17,10 +19,12 @@ class ArticlesViewModel(
         getArticles()
     }
 
-    private fun getArticles() {
+    fun getArticles(forceFetch: Boolean = false) {
         scope.launch {
 
-            val fetchedArticles = useCase.getArticles()
+            _articlesState.emit(ArticlesState(loading = true, articles = _articlesState.value.articles))
+
+            val fetchedArticles = useCase.getArticles(forceFetch)
 
             _articlesState.emit(ArticlesState(articles = fetchedArticles))
         }
