@@ -1,4 +1,4 @@
-package br.com.julianovince.diariodenoticias.articles
+package br.com.julianovince.diariodenoticias.articles.data
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
