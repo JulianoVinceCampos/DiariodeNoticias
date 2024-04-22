@@ -1,4 +1,4 @@
-package br.com.julianovince.diariodenoticias.articles
+package br.com.julianovince.diariodenoticias.articles.application
 
 data class Article(
     val title:String,
