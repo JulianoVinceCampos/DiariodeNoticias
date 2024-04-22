@@ -1,6 +1,5 @@
-package br.com.julianovince.diariodenoticias.articles
+package br.com.julianovince.diariodenoticias.articles.data
 
-import br.com.julianovince.diariodenoticias.db.Article
 import br.com.julianovince.diariodenoticias.db.DiariodeNoticiasDatabase
 
 class ArticlesDataSource(
@@ -15,6 +14,10 @@ class ArticlesDataSource(
         database.diariodeNoticiasDatabaseQueries.transaction {
             articles.forEach { articleRaw -> insertArticle(articleRaw) }
         }
+    }
+
+    fun clearArticles(){
+        database.diariodeNoticiasDatabaseQueries.removeAllArticles()
     }
 
 
