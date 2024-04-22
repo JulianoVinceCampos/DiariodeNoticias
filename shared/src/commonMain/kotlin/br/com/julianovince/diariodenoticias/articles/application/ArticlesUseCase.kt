@@ -1,5 +1,7 @@
-package br.com.julianovince.diariodenoticias.articles
+package br.com.julianovince.diariodenoticias.articles.application
 
+import br.com.julianovince.diariodenoticias.articles.data.ArticleRaw
+import br.com.julianovince.diariodenoticias.articles.data.ArticlesRepository
 import kotlinx.datetime.Clock
 import kotlinx.datetime.Instant
 import kotlinx.datetime.TimeZone
@@ -9,11 +11,11 @@ import kotlinx.datetime.todayIn
 import kotlin.math.abs
 
 class ArticlesUseCase(
-    private val service:ArticlesService
+    private val repo: ArticlesRepository
 ) {
 
-    suspend fun getArticles(): List<Article> {
-        val articlesRaw = service.fetchArticles()
+    suspend fun getArticles(forceFetch: Boolean): List<Article> {
+        val articlesRaw = repo.getArticles(forceFetch)
         return mapArticles(articlesRaw)
     }
 
