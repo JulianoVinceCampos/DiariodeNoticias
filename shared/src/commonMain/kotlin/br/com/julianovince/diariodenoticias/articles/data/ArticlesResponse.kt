@@ -1,5 +1,6 @@
-package br.com.julianovince.diariodenoticias.articles
+package br.com.julianovince.diariodenoticias.articles.data
 
+import br.com.julianovince.diariodenoticias.articles.data.ArticleRaw
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
